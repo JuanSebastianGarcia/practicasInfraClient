@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ConexionServer {
+public class EchoTCPClient {
 
 	
 	//atributos para la coneccion
@@ -16,7 +16,7 @@ public class ConexionServer {
 	/*
 	 * METODO CONSTRUCTOR
 	 */
-	public ConexionServer(){
+	public EchoTCPClient(){
 		
 	}
 	

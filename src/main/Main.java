@@ -6,7 +6,7 @@ public class Main {
 
 	
 	//clase que se conecta con el servidor
-	private static ConexionServer myConection =new ConexionServer();
+	private static EchoTCPClient myConection =new EchoTCPClient();
 	
 	
 	public static void main(String[] args) {
