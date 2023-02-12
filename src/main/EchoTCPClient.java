@@ -31,7 +31,7 @@ public class EchoTCPClient {
 		try {
 			
 			//la direccion o ubicacion del servidor y el puerto por el cual se va a enviar la infromación
-			miSocket =  new Socket("localhost", 9090);
+			miSocket =  new Socket("localhost", 1111);
 
 			//se establece la conexion entre mi flujo de salida y el socket
 			flujoSalida = new DataOutputStream(miSocket.getOutputStream());
