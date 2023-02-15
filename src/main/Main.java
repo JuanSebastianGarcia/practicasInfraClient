@@ -25,8 +25,9 @@ public class Main {
 		
 		String mensaje=JOptionPane.showInputDialog("ingrese el mensaje");
 		
-		myConection.realizarConexion(mensaje);
+		mensaje=myConection.realizarConexion(mensaje);
 		
+		System.out.println(mensaje);
 		
 	}
 	
