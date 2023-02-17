@@ -102,7 +102,7 @@ public class ConectionServer {
 	}
 
 	
-	/*
+	/**
 	 * METODO QUE SOLICITA AL SERVIDOR INFORMACION DE LA CUENTA
 	 */
 	public String solicitarInformacion(String documento){
