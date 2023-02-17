@@ -1,4 +1,4 @@
-package main;
+package mainTcp;
 
 import javax.swing.JOptionPane;
 

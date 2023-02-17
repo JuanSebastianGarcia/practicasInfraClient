@@ -16,13 +16,10 @@ public class ConectionServer {
 	/*
 	 * METODO CONSTRUCTOR
 	 */
-	public ConectionServer(){
-
-		
-	}
+	public ConectionServer(){}
 
 
-	/*
+	/**
 	 * METODO QUE SOLICITA AL SERVIDOR PARA RETIRAR DINERO
 	 */
 	public  String retirarDinero(double cantidadDinero,String documento){
@@ -38,12 +35,10 @@ public class ConectionServer {
 			flujoSalida = new DataOutputStream(miSocket.getOutputStream());
 			flujoEntrada = new DataInputStream(miSocket.getInputStream());
 
+			
+			String mensaje="retirarDinero#"+documento+"#"+cantidadDinero;
 			//se envia el mensaje al servidor
-		    /*
-		     * falta enviarle al servidor el numero de la opcion
-		     * y enviar el documento
-		     */
-			flujoSalida.writeUTF(cantidadDinero+"");
+			flujoSalida.writeUTF(mensaje);
 			respuesta=flujoEntrada.readUTF();
 
 			//se cierran las conexiones
@@ -63,7 +58,7 @@ public class ConectionServer {
 	}
 
 	
-	/*
+	/**
 	 * METODO QUE SOLICITA AL SERVIDOR AGREGAR DINERO
 	 */
 	public  String agregarDinero(double cantidadDinero,String documento){
@@ -79,12 +74,11 @@ public class ConectionServer {
 			flujoSalida = new DataOutputStream(miSocket.getOutputStream());
 			flujoEntrada = new DataInputStream(miSocket.getInputStream());
 
+			
+			String mensaje="depositarDinero#"+documento+"#"+cantidadDinero;
+			
 			//se envia el mensaje al servidor
-			    /*
-			     * falta enviarle al servidor el numero de la opcion
-			     * y enviar el documento
-			     */
-			flujoSalida.writeUTF(cantidadDinero+"");
+			flujoSalida.writeUTF(mensaje);
 			respuesta=flujoEntrada.readUTF();
 
 			
@@ -124,11 +118,10 @@ public class ConectionServer {
 			flujoSalida = new DataOutputStream(miSocket.getOutputStream());
 			flujoEntrada = new DataInputStream(miSocket.getInputStream());
 
+			
+			String mensaje="solicitarInformacion#"+documento;
+			
 			//se envia el mensaje al servidor
-		    /*
-		     * falta enviarle al servidor el numero de la opcion
-		     * y enviar el documento
-		     */
 			flujoSalida.writeUTF(mensaje);
 			respuesta=flujoEntrada.readUTF();
 
@@ -153,7 +146,7 @@ public class ConectionServer {
 	}
 
 	
-	/*
+	/**
 	 * METODO QUE SOLICITA AL SERVIDOR CREAR UNA CUENTA
 	 */
 	public String crearCuenta(String documento,String nombre){
@@ -168,15 +161,12 @@ public class ConectionServer {
 			//se establece la conexion entre mi flujo de salida y el socket
 			flujoSalida = new DataOutputStream(miSocket.getOutputStream());
 			flujoEntrada = new DataInputStream(miSocket.getInputStream());
+			
+			String mensaje="crearUsuario#"+nombre+"#"+documento;
 
-			//se envia el mensaje al servidor
-		    /*
-		     * falta enviarle al servidor el numero de la opcion
-		     * y enviar el documento
-		     */
+			//se envia el mensaje al servidor y se espera su respuesta
 			flujoSalida.writeUTF(mensaje);
 			respuesta=flujoEntrada.readUTF();
-
 
 
 			//se cierran las conexiones

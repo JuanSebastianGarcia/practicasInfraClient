@@ -28,11 +28,11 @@ public class Main {
 		switch(opcion){
 		case 1: retirarDinero();   break;
 			
-		case 2: retirarDinero();   break;
+		case 2: agregarDinero();   break;
 		
 		case 3: consultarInformacion(); break;
 		
-		case 4: crearCuenta()  break;
+		case 4: crearCuenta();  break;
 		}
 		
 		
@@ -55,9 +55,6 @@ public class Main {
 		System.out.println(respuesta);
 		
 	}
-	
-	
-	
 	
 	
 	
