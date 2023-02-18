@@ -3,9 +3,7 @@ package cajeroServidor;
 import mainTcp.EchoTCPClient;
 
 public class Main {
-		
-	//clase que se conecta con el servidor
-	private static Conexion myConection =new Conexion();
+	
 		
 	
 	public static void main(String[] args) {
@@ -24,7 +22,10 @@ public class Main {
 	 */
 	public void onServer(){
 		
-		myConection.onServer();
+		HiloServer hilo=new HiloServer();
+		
+		
+		hilo.run();
 	}
 
 }
