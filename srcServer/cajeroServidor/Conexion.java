@@ -6,12 +6,7 @@ import java.net.Socket;
 
 public class Conexion {
 
-	//atributos para la coneccion
-	private static Socket miSocket;
-	private static DataOutputStream flujoSalida;
-	private DataInputStream flujoEntrada;
-	
-	
+
 	/*
 	 * CONSTRUCTOR
 	 */

@@ -33,11 +33,17 @@ public class Main {
 		case 3: consultarInformacion(); break;
 		
 		case 4: crearCuenta();  break;
+		
+		case 5: salir(); break;
 		}
 		
 		
 	}
 
+	public void salir(){
+	
+		System.out.println("gracias por usar");
+	}
 	
 	/*
 	 * METODO QUE SE ENCARGA DE CREAR UNA CUENTA NUEVA DE USUARIO
@@ -52,7 +58,10 @@ public class Main {
 		String respuesta=client.crearCuenta(documentoUsuario, nombreUsuario);
 		
 		
-		System.out.println(respuesta);
+		JOptionPane.showMessageDialog(null, respuesta);
+		
+		
+		ejecutarCodigo();
 		
 	}
 	
@@ -69,7 +78,11 @@ public class Main {
 		//invocacion
 		String respuesta=client.solicitarInformacion(documentoUsuario);
 		
-		System.out.println(respuesta);
+		JOptionPane.showMessageDialog(null, respuesta);
+		
+		
+		ejecutarCodigo();
+		
 	}
 	
 	
@@ -87,7 +100,9 @@ public class Main {
 		//invocacion
 		String respuesta=client.agregarDinero(cantidadDinero, documentoUsuario);
 		
-		System.out.println(respuesta);
+		JOptionPane.showMessageDialog(null, respuesta);
+		
+		ejecutarCodigo();
 		
 	}
 	
@@ -104,7 +119,10 @@ public class Main {
 		//invocacion
 		String respuesta=client.retirarDinero(cantidadDinero, documentoUsuario);
 		
-		System.out.println(respuesta);
+		
+		JOptionPane.showMessageDialog(null, respuesta);
+		
+		ejecutarCodigo();
 		
 	}
 	

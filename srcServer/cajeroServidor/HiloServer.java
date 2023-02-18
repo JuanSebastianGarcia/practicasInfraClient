@@ -86,7 +86,7 @@ public class HiloServer extends Thread{
 	/*
 	 * METODO QUE SE ENCARGA DE ELEGIR LO QUE EL USUARIO SOLICITO
 	 */
-	private void elegirPeticionPrincipal(String peticion) {
+	private void elegirPeticionPrincipal(String peticion) throws IOException {
 		
 		switch(peticion){
 		
@@ -102,10 +102,65 @@ public class HiloServer extends Thread{
 	
 	
 	
+	
+	
+	/*
+	 * METODO QUE CREA UN USUARIO
+	 */
+	private void crearUsuario() throws IOException {
+		
+		//se almacena el documento y la cantidad de dinero que el usuario desea
+		String nombre=procesarCadenaPeticion();
+		removerPeticion();
+		String documento = procesarCadenaPeticion();
+		removerPeticion();
+		
+		String respuesta=singleton.crearUsuario(nombre,documento);
+	
+		flujoSalida.writeUTF(respuesta);
+	}
+
+
+	/*
+	 * METODO QUE SE ENCARGA DE ENVIAR LA INFORMACION DE CUENTA DE UN USUARIO
+	 */
+	private void solicitarInformacion() throws IOException {
+		
+		
+		//se almacena el documento y la cantidad de dinero que el usuario desea
+		String documento=procesarCadenaPeticion();
+		removerPeticion();
+		
+		
+		String respuesta=singleton.consultarInformacion(documento);
+		
+		flujoSalida.writeUTF(respuesta);
+		
+	}
+
+
+	/*
+	 * METODO QUE SE ENCARGA DE DEPOSTIAR DINERO EN UNA CUENTA DE UN USUARIO
+	 */
+	private void depositarDinero() throws IOException {
+		
+		//se almacena el documento y la cantidad de dinero que el usuario desea
+		String documento=procesarCadenaPeticion();
+		removerPeticion();
+		double cantidadDinero = Double.parseDouble(procesarCadenaPeticion());
+		removerPeticion();
+		
+		
+		String respuesta=singleton.depositarDinero(documento,cantidadDinero);
+	
+		flujoSalida.writeUTF(respuesta);
+	}
+
+
 	/*
 	 * METODO QUE SE ENCARGA DE HACER EL PROCESO PARA RETIRAR DINERO
 	 */
-	private void retirarDinero() {
+	private void retirarDinero() throws IOException {
 		
 		//se almacena el documento y la cantidad de dinero que el usuario desea
 		String documento=procesarCadenaPeticion();
@@ -115,6 +170,8 @@ public class HiloServer extends Thread{
 		
 		
 		String respuesta=singleton.retirarDinero(documento,cantidadDinero);
+		
+		flujoSalida.writeUTF(respuesta);
 		
 	}
 
@@ -140,9 +197,6 @@ public class HiloServer extends Thread{
 		
 		return primeraPeticion;
 	}
-
-
-
 
 
 

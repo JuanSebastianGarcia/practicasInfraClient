@@ -35,10 +35,84 @@ public class Singleton {
 		
 		if(listaPersonas.get(documento)!=null){
 			
+			
+			respuesta=listaPersonas.get(documento).retirarDinero(cantidadDinero);
+			
+			
+			
 		}else{
 			respuesta="el usuario no ha sido encontrado";
 		}
 		
+		
+		
+		return respuesta;
+	}
+
+
+
+
+
+	
+	/*
+	 * METODO QUE REALIZA UN DEPOSITO DE DINERO A UN USUARIO
+	 */
+	public String depositarDinero(String documento, double cantidadDinero) {
+		
+		String respuesta="";
+		
+		if(listaPersonas.get(documento)!=null){
+			
+			
+			respuesta=listaPersonas.get(documento).depositarDinero(cantidadDinero);
+			
+			
+			
+		}else{
+			respuesta="el usuario no ha sido encontrado";
+		}
+		
+		
+		
+		return respuesta;
+	}
+
+
+
+	/*
+	 * METODO QUE RETORNA LA INFORMACION DE UN USUARIO SOLICITADO
+	 */
+	public String consultarInformacion(String documento) {
+	
+		String respuesta="";
+		
+		if(listaPersonas.get(documento)!=null){
+			
+			
+			respuesta=listaPersonas.get(documento).toString();
+			
+			
+			
+		}else{
+			respuesta="el usuario no ha sido encontrado";
+		}
+		
+		
+		
+		return respuesta;
+	}
+
+
+
+	/*
+	 * METODO QUE CREA UN USUARIO
+	 */
+	public String crearUsuario(String nombre, String documento) {
+		
+		String respuesta="el usuario ha sido creado";
+		
+		Persona persona=new Persona(nombre, documento);
+		listaPersonas.put(documento, persona);
 		
 		
 		return respuesta;
