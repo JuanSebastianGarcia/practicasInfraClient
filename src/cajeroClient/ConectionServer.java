@@ -19,7 +19,7 @@ public class ConectionServer {
 	public ConectionServer(){}
 
 
-	/**
+	/*
 	 * METODO QUE SOLICITA AL SERVIDOR PARA RETIRAR DINERO
 	 */
 	public  String retirarDinero(double cantidadDinero,String documento){
