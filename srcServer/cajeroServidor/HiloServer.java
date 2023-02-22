@@ -72,6 +72,7 @@ public class HiloServer extends Thread{
 		
 		mensaje=flujoEntrada.readUTF();//se recibe la peticion del cliente
 		
+		System.out.println(mensaje);
 		
 		//invocacion
 		String peticion=procesarCadenaPeticion();
