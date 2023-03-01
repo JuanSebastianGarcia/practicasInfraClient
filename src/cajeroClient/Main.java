@@ -4,56 +4,72 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application{
 
 	public ConectionServer client=new ConectionServer();
+	public static Main mainClass= new Main();
 	
 	
-	public static void main(String[] args) {
-	
-		Main main=new Main();
+	public static Main getInstance(){
 		
-		main.ejecutarCodigo();
-
+		return mainClass;
 	}
 	
-	
+
 	/*
-	 * METODO QUE DA INICIO A LA EJECUCION DEL CODIGO
+	 * METODO PRINCIPAL
 	 */
-	public void ejecutarCodigo(){
-		
-		//se solicita la opcion al usuario
-		int opcion=imprimirMenu();
-		
-		
-		switch(opcion){
-		case 1: retirarDinero();   break;
-			
-		case 2: agregarDinero();   break;
-		
-		case 3: consultarInformacion(); break;
-		
-		case 4: crearCuenta();  break;
-		
-		case 5: buscarArchivoTxt(); break;
-		
-		case 6: salir(); break;
+	public static void main(String[] args) {
+
+		launch(args);
+
+	}
+	
+
+	/*
+	 * METODO QUE INICIA EL CICLO DE VIDA DE LA INTERFAZ GRAFICA
+	 */
+	@Override
+	//METODO QUE DA INICIO A LA INTERFAZ GRAFICA
+	public void start(Stage primaryStage) throws Exception,InvocationTargetException {
+
+
+		try{
+
+
+		Parent root=FXMLLoader.load(getClass().getResource("/cajeroClient/MenuPrincipal.fxml"));
+
+
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.setTitle(" MARKET PLACE");
+		primaryStage.show();
 		}
-		
-		
+		catch(Exception InvocationTargetException ){
+
+			System.out.println(InvocationTargetException.getCause());
+		}
+
 	}
 
+	
 	
 	/*
 	 * ESTE METODO SE ENCARGA DE BUSCAR UN ARCHIVO TXT Y ALMACENAR SU CONTENIDO
 	 */
-	private void buscarArchivoTxt() {
+	public void buscarArchivoTxt() {
 		
         // Crear un objeto JFileChooser
         JFileChooser chooser = new JFileChooser();
@@ -115,13 +131,9 @@ public class Main {
 
 		JOptionPane.showMessageDialog(null, respuesta);
 		
-		ejecutarCodigo();
 	}
 	
 	
-	
-	
-
 
 
 	/*
@@ -149,8 +161,7 @@ public class Main {
 		
 		JOptionPane.showMessageDialog(null, respuesta);
 		
-		
-		ejecutarCodigo();
+
 		
 	}
 	
@@ -168,9 +179,7 @@ public class Main {
 		String respuesta=client.solicitarInformacion(documentoUsuario);
 		
 		JOptionPane.showMessageDialog(null, respuesta);
-		
-		
-		ejecutarCodigo();
+
 		
 	}
 	
@@ -190,10 +199,10 @@ public class Main {
 		String respuesta=client.agregarDinero(cantidadDinero, documentoUsuario);
 		
 		JOptionPane.showMessageDialog(null, respuesta);
-		
-		ejecutarCodigo();
+
 		
 	}
+	
 	
 	
 	/*
@@ -211,22 +220,12 @@ public class Main {
 		
 		JOptionPane.showMessageDialog(null, respuesta);
 		
-		ejecutarCodigo();
 		
 	}
+
+
+
+
 	
-
-	/*
-	 * METODO QUE CONTIENE LAS FUNCIONALIDADES DEL CODIGO EN UN MENU 
-	 */
-	public int imprimirMenu(){
-		
-		String menu="1.retirar dinero \n 2.depositar dinero \n 3.consultar saldo \n 4.crear cuenta  \n 5.seleccionar un archivo txt \n 6.salir";
-		
-		int opcion=Integer.parseInt(JOptionPane.showInputDialog(menu));
-		
-		return opcion;
-	}
-
 
 }
