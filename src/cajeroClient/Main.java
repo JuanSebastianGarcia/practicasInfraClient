@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main {
 
@@ -41,7 +44,21 @@ public class Main {
 		
 		case 4: crearCuenta();  break;
 		
-		case 5: buscarArchivoTxt(); break;
+		case 5: try {
+				buscarArchivoTxt();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedLookAndFeelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} break;
 		
 		case 6: salir(); break;
 		}
@@ -53,10 +70,13 @@ public class Main {
 	/*
 	 * ESTE METODO SE ENCARGA DE BUSCAR UN ARCHIVO TXT Y ALMACENAR SU CONTENIDO
 	 */
-	private void buscarArchivoTxt() {
+	private void buscarArchivoTxt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		
         // Crear un objeto JFileChooser
         JFileChooser chooser = new JFileChooser();
+        
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        SwingUtilities.updateComponentTreeUI(chooser);
 
         // Mostrar el diálogo para seleccionar un archivo
         int resultado = chooser.showOpenDialog(null);
