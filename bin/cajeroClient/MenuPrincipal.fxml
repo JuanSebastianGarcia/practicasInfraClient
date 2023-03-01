@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cajeroClient.ControllerMenuPrincipal">
+   <children>
+      <Label layoutX="110.0" layoutY="14.0" text="BANCA FACIL" textFill="#3444d3">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRetirarDinero" layoutX="98.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnRetirarDineroEvent" prefHeight="25.0" prefWidth="168.0" text="RETIRAR DINERO" />
+      <Button fx:id="btnDepositarDinero" layoutX="96.0" layoutY="134.0" mnemonicParsing="false" onAction="#btnDepositarDineroEvent" prefHeight="25.0" prefWidth="168.0" text="DEPOSITAR DINERO" />
+      <Button fx:id="btnConsultarInformacion" layoutX="98.0" layoutY="221.0" mnemonicParsing="false" onAction="#btnConsultarInformacionEvent" text="CONSULTAR INFORMACION" />
+      <Button fx:id="btnCrearCuenta" layoutX="98.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnCrearCuentaEvent" prefHeight="25.0" prefWidth="168.0" text="CREAR CUENTA" />
+      <Button fx:id="btnCargarArchivo" layoutX="124.0" layoutY="279.0" mnemonicParsing="false" onAction="#btnCargarArchivoEvent" text="CARGAR ARCHIVO" />
+      <Button fx:id="btnSalir" layoutX="299.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnSalirEvent" text="salir" />
+   </children>
+</AnchorPane>
