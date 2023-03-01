@@ -1,5 +1,12 @@
 package cajeroClient;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -34,16 +41,98 @@ public class Main {
 		
 		case 4: crearCuenta();  break;
 		
-		case 5: salir(); break;
+		case 5: buscarArchivoTxt(); break;
+		
+		case 6: salir(); break;
 		}
 		
 		
 	}
 
+	
+	/*
+	 * ESTE METODO SE ENCARGA DE BUSCAR UN ARCHIVO TXT Y ALMACENAR SU CONTENIDO
+	 */
+	private void buscarArchivoTxt() {
+		
+        // Crear un objeto JFileChooser
+        JFileChooser chooser = new JFileChooser();
+
+        // Mostrar el diálogo para seleccionar un archivo
+        int resultado = chooser.showOpenDialog(null);
+
+        // Si se seleccionó un archivo, obtener su ruta
+        String rutaArchivo = null;
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = chooser.getSelectedFile();
+            rutaArchivo = archivoSeleccionado.getAbsolutePath();
+        }
+
+        // Mostrar la ruta del archivo
+        if (rutaArchivo != null) {
+            
+        	//invocacion
+        	leerArchivotxt(rutaArchivo);
+        	
+        } else {
+            System.out.println("No se seleccionó ningún archivo.");
+        }
+		
+		
+	}
+	
+	
+
+	/*
+	 * METODO QUE ME PERMITE LEER EL CONTENIDO DE UN ARCHIVO TXT
+	 */
+	private void leerArchivotxt(String rutaArchivo) {
+		
+		//se crea el archivo a leer y la variable que almacenara su contenido
+		File archivo = new File(rutaArchivo);
+		ArrayList<String> lineas = new ArrayList<>();
+
+		try {
+			BufferedReader lector = new BufferedReader(new FileReader(archivo));
+			String linea = lector.readLine();
+			while (linea != null) {
+				lineas.add(linea);
+				linea = lector.readLine();
+			}
+			lector.close();
+		} catch (IOException e) {
+			System.out.println("Hubo un error al leer el archivo: " + e.getMessage());
+		}
+		
+
+		/* Mostrar las lineas almacenadas en el ArrayList
+		for (String l : lineas) {
+			System.out.println(l);
+		}*/
+
+		//invocacion
+		String respuesta=client.enviarListaSolicitudes(lineas);
+
+		JOptionPane.showMessageDialog(null, respuesta);
+		
+		ejecutarCodigo();
+	}
+	
+	
+	
+	
+
+
+
+	/*
+	 * METODO QUE DA FINAL AL PROGRAMA
+	 */
 	public void salir(){
 	
 		System.out.println("gracias por usar");
 	}
+	
+	
 	
 	/*
 	 * METODO QUE SE ENCARGA DE CREAR UNA CUENTA NUEVA DE USUARIO
@@ -132,7 +221,7 @@ public class Main {
 	 */
 	public int imprimirMenu(){
 		
-		String menu="1.retirar dinero \n 2.depositar dinero \n 3.consultar saldo \n 4.crear cuenta";
+		String menu="1.retirar dinero \n 2.depositar dinero \n 3.consultar saldo \n 4.crear cuenta  \n 5.seleccionar un archivo txt \n 6.salir";
 		
 		int opcion=Integer.parseInt(JOptionPane.showInputDialog(menu));
 		

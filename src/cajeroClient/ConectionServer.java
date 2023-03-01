@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ConectionServer {
 
@@ -19,7 +20,7 @@ public class ConectionServer {
 	public ConectionServer(){}
 
 
-	/**
+	/*
 	 * METODO QUE SOLICITA AL SERVIDOR PARA RETIRAR DINERO
 	 */
 	public  String retirarDinero(double cantidadDinero,String documento){
@@ -183,6 +184,50 @@ public class ConectionServer {
 		}
 
 
+
+
+		return respuesta;
+	}
+
+
+	public String enviarListaSolicitudes(ArrayList<String> lineas) {
+
+		String respuesta="la lista de operaciones ha sido realizada";
+
+		for(int i=0;i<lineas.size();i++){
+			try {
+
+				//la direccion o ubicacion del servidor y el puerto por el cual se va a enviar la infromación
+				miSocket =  new Socket("localhost", 1111);
+
+				//se establece la conexion entre mi flujo de salida y el socket
+				flujoSalida = new DataOutputStream(miSocket.getOutputStream());
+				flujoEntrada = new DataInputStream(miSocket.getInputStream());
+				
+				String mensaje=lineas.get(i);
+				System.out.println(mensaje);
+
+				//se envia el mensaje al servidor y se espera su respuesta
+				flujoSalida.writeUTF(mensaje);
+				respuesta=flujoEntrada.readUTF();
+
+
+				//se cierran las conexiones
+				flujoSalida.close();
+				flujoEntrada.close();
+				miSocket.close();
+
+
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				respuesta="ha ocurrido un error";
+			}
+
+		
+		
+		}
 
 
 		return respuesta;
